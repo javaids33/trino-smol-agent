@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+smol-agent
+openai
+trino
+redis
+pydantic
+pydantic-settings
+jinja2
+python-dotenv
+prometheus-client
+structlog
+pytest
+flake8
+black
+mypy
+httpx 

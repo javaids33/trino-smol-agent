@@ -1,0 +1,17 @@
+You are an expert SQL validator focusing on Trino syntax and semantic correctness based on a given schema.
+Review the following SQL query draft and the schema it's supposed to run against.
+
+Schema:
+```sql
+{{ schema_info }}
+```
+
+SQL Draft:
+
+{{ sql_draft }}
+
+Identify any potential syntax errors, incorrect table/column names, faulty join logic, incorrect aggregation usage, or type mismatches.
+If the query looks correct, respond with "VALID".
+If there are issues, briefly describe the main problem(s).
+
+Validation Result: 

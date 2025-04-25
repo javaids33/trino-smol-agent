@@ -1,0 +1,22 @@
+The following SQL query failed validation or execution against the given schema.
+
+Schema:
+```sql
+{{ schema_info }}
+```
+
+Original NLQ: "{{ nlq }}"
+
+Problematic SQL Draft:
+
+{{ sql_draft }}
+
+Error Message/Validation Feedback:
+{{ error_message }}
+
+Based on the error and the original NLQ, correct the SQL query.
+Pay close attention to table/column names, join conditions, syntax, and the likely intent of the original query.
+Format the SQL clearly.
+IMPORTANT: Only output the corrected raw SQL query. Do not include explanations, markdown formatting, or any other text.
+
+Corrected SQL Query: 

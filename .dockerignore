@@ -1,0 +1,38 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.env
+.env.*
+!.env.sample
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
+
+# Log files
+logs/
+*.log
+
+# Builds and distributions
+dist/
+build/ 

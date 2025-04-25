@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  nlq-sql-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nlq-sql-service
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=INFO
+      # Trino connection - adjust host to the service name or network alias of your Trino container
+      - TRINO_HOST=${TRINO_HOST:-trino}
+      - TRINO_PORT=${TRINO_PORT:-8080}
+      - TRINO_USER=${TRINO_USER:-trino}
+      - TRINO_CATALOG=${TRINO_CATALOG:-tpch}
+      - TRINO_SCHEMA=${TRINO_SCHEMA:-sf1}
+      # Redis connection - using the Redis service defined below
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # LLM configuration
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      # API key for authentication
+      - API_KEY=${API_KEY:-test-key}
+    volumes:
+      - ./src:/app/src
+    networks:
+      - nlq-sql-network
+      - external-trino-network  # This will be used to connect to the external Trino
+
+  redis:
+    image: redis:7-alpine
+    container_name: nlq-sql-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - nlq-sql-network
+    volumes:
+      - redis-data:/data
+    command: redis-server --save 60 1 --loglevel warning
+
+networks:
+  nlq-sql-network:
+    driver: bridge
+  external-trino-network:
+    external: true
+    # You need to specify the name of the network that your Trino instance is running on
+    name: ${TRINO_NETWORK:-trino-network}
+
+volumes:
+  redis-data: 

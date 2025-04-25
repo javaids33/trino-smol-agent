@@ -1,0 +1,27 @@
+Given the following database schema information and a natural language query (NLQ), generate an accurate and efficient SQL query for Trino.
+
+Schema:
+```sql
+{{ schema_info }}
+```
+
+NLQ: "{{ nlq }}"
+{% if analysis_hints %}
+Analysis Hints: {{ analysis_hints }}
+{% endif %}
+
+Follow these rules:
+
+Use only tables and columns listed in the schema.
+
+Ensure correct JOIN conditions if multiple tables are needed.
+
+Aggregate correctly based on the NLQ.
+
+Apply filters accurately.
+
+Format the SQL clearly.
+
+IMPORTANT: Only output the raw SQL query. Do not include explanations, markdown formatting (like ```sql), or any other text.
+
+SQL Query: 
